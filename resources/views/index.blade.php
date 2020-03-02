@@ -225,53 +225,34 @@ Seria arte?
  
 
   <!-- blog -->
+      @isset($posts)
           <section class="news py-5 px-4 bg-light" id="blog">
               <div class="py-3">
                   <h5 class="text-uppercase font-os font-size-16 text-muted">Saiba Mais</h5>
                   <h1 class="text-uppercase font-staat font-size-34">Nosso Blog</h1>
               </div>
               <div class="row">
+                  @foreach($posts as $post)
+
                   <div class="col-sm-4 my-3">
                       <div class="card border-0">
-                          <img src="{{asset('/assets/img/blog/01.jpg')}}" alt="news1" class="card-img-top">
+                            <a href="{{ route('blog', $post->uri) }}"><img src="{{ \Illuminate\Support\Facades\Storage::url($post->cover)}}"></a>
                           <div class="card-body">
-                              <p class="font-ram font-size-16 text-black-50">em <b class="text-uppercase text-dark">Criação</b></p>
-                              <h5 class="card-title font-ram">O que faz uma designer de joias </h5>
+                              {{-- <p class="font-ram font-size-16 text-black-50">em <b class="text-uppercase text-dark">Criação</b></p> --}}
+                              <h5 class="card-title font-ram">{{ $post->title }}</h5>
                               <p class="cart-text text-black-50">
-                                  Fusce suscipit, ante a hendrerit ullamcorper, risus nisl cursus purus, sit amet viverra ante nulla vel justo. 
-                        Morbi justo erat, posuere vel libero non, bibendum convallis enim.
+                                    {{ $post->subtitle }}
                               </p>
+                              <span class="posted_on">Postado em {{ date('d/m/Y H:i', strtotime($post->updated_at))}}</span>
+                        
                           </div>
+                          <a href="{{ route('blog', $post->uri) }}" class="btn btn-outline-warning button">Saiba mais</a>
                       </div>
                   </div>
-                  <div class="col-sm-4 my-3">
-                      <div class="card border-0">
-                          <img src="{{asset('/assets/img/blog/02.jpg')}}" alt="news1" class="card-img-top">
-                          <div class="card-body">
-                              <p class="font-ram font-size-16 text-black-50">em <b class="text-uppercase text-dark">Coleção</b></p>
-                              <h5 class="card-title font-ram">Joias vendidas a Rainha Isabel</h5>
-                              <p class="cart-text text-black-50">
-                                  Fusce suscipit, ante a hendrerit ullamcorper, risus nisl cursus purus, sit amet viverra ante nulla vel justo. 
-                        Morbi justo erat, posuere vel libero non, bibendum convallis enim.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4 my-3">
-                      <div class="card border-0">
-                          <img src="{{asset('/assets/img/blog/03.jpg')}}" alt="news1" class="card-img-top">
-                          <div class="card-body">
-                              <p class="font-ram font-size-16 text-black-50">em <b class="text-uppercase text-dark">Luxurius</b></p>
-                              <h5 class="card-title font-ram">Sinta o Brilho em si</h5>
-                              <p class="cart-text text-black-50">
-                                  Fusce suscipit, ante a hendrerit ullamcorper, risus nisl cursus purus, sit amet viverra ante nulla vel justo. 
-                        Morbi justo erat, posuere vel libero non, bibendum convallis enim.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                  @endforeach
+                 
           </section>
+          @endisset
   <!-- #news -->
 
   <footer id="footer" class="pt-5 px-3">
