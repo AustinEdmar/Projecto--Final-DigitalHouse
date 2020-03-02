@@ -10,7 +10,7 @@ class webController extends Controller
     {
         $posts = Post::orderBy('created_at', 'DESC')->limit(3)->get();
         
-        echo '<pre>';
+        
         
         return view('index', ['posts'=>$posts,
         ]);
