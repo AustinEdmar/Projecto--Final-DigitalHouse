@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('index');
-});
+}); */
+
+Route::get('/', 'webController@index')->name('blog');
+
+
+Route::get('/blog{uri}', 'webController@blog')->name('blog');
